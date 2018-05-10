@@ -22,7 +22,7 @@ public class Driver
 			File file = new File("10-million-combos.txt");
 	    	BufferedReader br = new BufferedReader(new FileReader(file));
 	 		int count = 0;
-	    	while ((line=br.readLine())!=null && count<=1000001)
+	    	while ((line=br.readLine())!=null && count<=1000000)
 	    	{	
 	    		//split by whitespace, so first string is the username and second is the password
 	    		String [] values = line.split("\\s+");
