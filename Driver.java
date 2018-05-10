@@ -19,7 +19,7 @@ public class Driver
 		{
 			//read from file using bufferedreader
 			String line = null;
-			File file = new File("/Users/ankitakhatri/Documents/CS245/Project4/10-million-combos.txt");
+			File file = new File("10-million-combos.txt");
 	    	BufferedReader br = new BufferedReader(new FileReader(file));
 	 		int count = 0;
 	    	while ((line=br.readLine())!=null && count<=1000001)
