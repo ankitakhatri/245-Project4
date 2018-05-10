@@ -36,7 +36,6 @@ public class Driver
 	    			//my hashtable, and java hashtable
 	    			myStringHashTable.put(username, password);
 	    			javaStringHashMap.put(username, password);
-	    			count++;
 
 	    			//get lookup times for both hashtables
 	    			//code to get lookup time for string for my hashtable
@@ -51,11 +50,12 @@ public class Driver
 					long javastrend=System.currentTimeMillis();
 					javaTime+=(javastrend-javastrstart);
 
-					if (count==1 || count==250000 || count==500000 || count==750000 || count == 990000)
+					if (count==0 || count==250000 || count==500000 || count==750000 || count == 1000000)
 					{
 						myStringTimes.add(myTime);
 						javaStringTimes.add(javaTime);
 					}
+					count++;
 	    		}
 	    	}
 	    	br.close();
@@ -108,7 +108,7 @@ public class Driver
         	long jintend = System.currentTimeMillis();
         	//get total time
         	javaTotalTime+=(jintend-jintstart);
-        	if (i==1 || i==250000 || i==500000 || i==750000 || i==990000)
+        	if (i==0 || i==250000 || i==500000 || i==750000 || i==1000000)
         	{
         		myIntTimes.add(myTotalTime);
         		javaIntTimes.add(javaTotalTime);
