@@ -1,3 +1,10 @@
+// Grading Notes:
+//		- I don't actually see the graph, but 
+//			I will give you the benefit of the
+//			doubt that you just didn't save it
+//			in excel format.
+//		- Other than that, Good Job!
+
 import java.io.*;
 import java.util.*;
 import java.lang.*;
@@ -78,6 +85,7 @@ public class Driver
 
         for (int i = 0; i<1000000; i++)
         {
+// Just using .nextInt() is fine as well.
         	int randomKey = random.nextInt(Integer.MAX_VALUE) + Integer.MIN_VALUE;
         	int randomValue = random.nextInt(Integer.MAX_VALUE) + Integer.MIN_VALUE;
         	myIntHashTable.put(randomKey, randomValue);
