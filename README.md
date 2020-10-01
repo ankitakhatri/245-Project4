@@ -1,51 +1,16 @@
-# Project 4
-Here is our last project! It is due by **Thursday, May 10th**. This time, you will need to do an implementation and also some measurements.
-> **Both** Part 1 and Part 2 are due on Thursday, May 10th and all files must be uploaded to GitHub BEFORE the deadline.
- 
+README for Ankita Khatri -- Project 4
 
-## What to submit:
+Classes:
+HashNode
+HashTable
+Driver
 
-1. Your own Hashtable class
+HashNode:
+My HashNode class is a class with objects of K and V to represent keys and values. This class can work with any type of object-- String, Integer, etc.
+The HashNode stores the key, value, and pointer to the next node.
 
-2. Code that measures the time insertions and lookups take using 1) and using Java's Hashtable
+HashTable:
+My actual HashTable is an arraylist of HashNodes, and I set each node to null at the beginning, in regards to the initial capacity. Each HashNode contains a linkedlist because I used an open hashing method. The constructor takes the initial capacity as the parameter. My getHashCode function uses the java built in HashCode function, and then I do that number%size of the arraylist, which is whatever my initial capacity is, or the new size if I have it resized. In my put method, which takes key and value as parameter, I use my getHashCode function to find an index to insert the new HashNode. I first check if the key is already present in that chain, and if it is, I just replace the value. If it is not present, I add it to the end of the linkedlist. If the loadfactor>.7, which is the default value for loadfactor, I double the size of the arraylist by creating a temp copy of the original, doubling the length and reinitializing the original, and then taking all the values from the temp and rehashing them into the array with the new doubled size. For my get function, I just rehashed the key to find the index we are looking for, and go through the chain at that index to find the HashNode I am looking for. 
 
-3. Two charts based on the measurements from 2
-
-4. **README** explaining your Hashtable class, esp. how your Hashtable rehashes when the table is too full.
->This README can either be a new README, README.txt, or add onto the beginning of this README.md. This is in addition to comments in your code.
-
- 
-
-## Part 1: Implement your own Hashtable class.
-
-You may want to read [Java API on Hashtable class](https://docs.oracle.com/javase/8/docs/api/java/util/Hashtable.html 'Hash Table Doc'). Your Hashtable class must include the following constructor and methods. You can change the initial capacity and the load factor. You may add variables, methods, or constructors.
-
-### Constructor  
-| Hashtable(int initialCapacity) |
-| :------------------------------ |
-|Constructs a new, empty hashtable with the specified initial capacity and default load factor (0.75).|
-
-### Methods  
-| V 	get(Object key)  |
-|:----------------------|
-|Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.|
-
-|V 	put(K key, V value)  |
-|:----------------------|
-|Maps the specified key to the specified value in this hashtable.|
-
-Note that K and V in the description can be any type/class in Java. You may use Object as the type of key and value.
-
-
-## Part 2: Compare the performance of your Hashtable and Java's Hashtable.
-
-The goal is for you to produce charts like those in [this website](https://github.com/fredrikwidlund/hash-table-benchmark 'Benchmark'). Insert all the data from the provided files for String and Integer and look up all the keys. For String insertion and lookup, use 10millioncombos.txt (You can get this file from Canvas) of 10,000,000 passwords (look for yours!) from [this website](https://xato.net/today-i-am-releasing-ten-million-passwords-b6278bbe7495). Each row of this file contains a username and a password. Use the username as key and the password as value. For Integer insertion and lookup, generate a random number between `Integer.MAX_VALUE` and `Integer.MIN_VALUE` use it as key and value.
-
-Here is the code to measure the time it takes for one look-up.
-
-		Hashtable<Integer, String> ht = new Hashtable<Integer, String>();
-		...
-		long start = System.currentTimeMillis();
-		String v = ht.get(k);
-		long end = System.currentTimeMillis();
-		System.out.println(end-start);
+Driver:
+In the driver, I read the first million lines from the 10millioncombos file and hashed the username and password values using both the java built-in hashmap, and my own hashtable. I set my initial capacity for my HashTable to 1000. I also generated 1 million random integers and hashed those values both ways. While hashing, I found the lookup times for both the built-in and my own get(key) methods and stored the 0, 250000, 500000, and 1000000 time benchmarks in an arraylist. After hashing and calculating total lookup time for strings and integers, using both hashtables, I wrote the benchmark values into a .csv file to open in excel, which will turn into a line graph.
